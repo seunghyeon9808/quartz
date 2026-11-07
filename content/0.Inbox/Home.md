@@ -6,7 +6,7 @@ dg-publish: "true"
 소개: 안녕하세요 현승의 디지털 가든 입니다. 
 
 ![[Pasted image 20261107232857.png|381]]
-[그림] 현승의 디지털 가든 (Hyeon Seung's Digital Garden)
+	[그림] 현승의 디지털 가든 (Hyeon Seung's Digital Garden)
 #### 블로그 구조 (Blog Structure)
 블로그는 1) Inbox, 2) Calendar, 3) Research, 4) Study, 5) Project, 6) life 의 6개의 상위 폴더로 구성된다. 
 1. Inbox: 미분류 노트 
