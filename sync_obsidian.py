@@ -132,24 +132,39 @@ def main():
     # 루트 index.md 보장 (Quartz 홈페이지 필수 파일)
     root_index = QUARTZ_CONTENT_DIR / "index.md"
     if not root_index.exists():
+        links = []
+        for md_path, _ in sorted(published_files, key=lambda x: x[0].stem):
+            if home_source and md_path == home_source:
+                continue
+            stem = md_path.stem
+            links.append(f"- [[{stem}]]")
+        links_md = "\n".join(links) if links else "- 아직 공개된 노트가 없습니다."
+
         if home_source and home_source.exists():
-            shutil.copy2(home_source, root_index)
+            home_text = home_source.read_text(encoding="utf-8")
+            fm_match = FRONTMATTER_RE.match(home_text)
+            body = home_text[fm_match.end():].strip() if fm_match else home_text.strip()
+            if body:
+                shutil.copy2(home_source, root_index)
+            else:
+                root_index.write_text(
+                    f"""---
+title: Home
+publish: true
+---
+
+## 공개된 노트 목록
+{links_md}
+""",
+                    encoding="utf-8",
+                )
             print(f"[홈페이지 설정] '{home_source.relative_to(VAULT_DIR)}' -> index.md")
         else:
-            links = []
-            for md_path, _ in sorted(published_files, key=lambda x: x[0].stem):
-                stem = md_path.stem
-                links.append(f"- [[{stem}]]")
-            links_md = "\n".join(links) if links else "- 아직 공개된 노트가 없습니다."
             root_index.write_text(
                 f"""---
 title: Home
 publish: true
 ---
-
-# 환영합니다!
-
-이곳은 Obsidian과 Quartz로 퍼블리시된 디지털 가든입니다.
 
 ## 공개된 노트 목록
 {links_md}

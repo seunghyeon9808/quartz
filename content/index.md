@@ -1,5 +1,8 @@
 ---
-updated: 2026-11-07
-dg-home: "true"
-dg-publish: "true"
+title: Home
+publish: true
 ---
+
+## 공개된 노트 목록
+- [[2026-11-07]]
+- [[Making blogs]]
