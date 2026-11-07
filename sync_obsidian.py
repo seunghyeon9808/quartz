@@ -145,11 +145,19 @@ def main():
             fm_match = FRONTMATTER_RE.match(home_text)
             body = home_text[fm_match.end():].strip() if fm_match else home_text.strip()
             if body:
-                shutil.copy2(home_source, root_index)
+                # title 속성이 없으면 원래 노트 파일명(예: Home)을 title로 자동 삽입하여 'index'로 표시되지 않게 함
+                if fm_match:
+                    fm_content = fm_match.group(1)
+                    if not re.search(r"^title\s*:", fm_content, re.MULTILINE | re.IGNORECASE):
+                        new_fm = f"---\ntitle: {home_source.stem}\n{fm_content}\n---\n"
+                        home_text = new_fm + home_text[fm_match.end():]
+                else:
+                    home_text = f"---\ntitle: {home_source.stem}\npublish: true\n---\n\n" + home_text
+                root_index.write_text(home_text, encoding="utf-8")
             else:
                 root_index.write_text(
                     f"""---
-title: Home
+title: {home_source.stem}
 publish: true
 ---
 
