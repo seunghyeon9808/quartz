@@ -4,11 +4,11 @@ dg-publish: "true"
 
 # Wilcoxon Test (윌콕슨 검정)
 
-**윌콕슨 검정(Wilcoxon Test)**은 화학자이자 통계학자인 **프랭크 윌콕슨(Frank Wilcoxon)**이 1945년 논문에서 제안한 **순위(Rank) 기반 비모수 통계 검정법(Non-parametric statistical test)**이다. 데이터가 정규분포를 따르지 않거나(정규성 가정 위배), 서열척도(Ordinal scale)이거나, 표본 크기가 작고 이상치(Outlier)가 존재할 때 모수적 검정(t-test)의 대안으로 사용된다.
+**윌콕슨 검정(Wilcoxon Test)**은 화학자이자 통계학자인 **프랭크 윌콕슨(Frank Wilcoxon)**이 1945년 논문에서 제안한 **순위(Rank) 기반 비모수 통계 검정법(Non-parametric statistical test)**이다. 1) 데이터가 정규분포를 따르지 않거나(정규성 가정 위배), 2) 서열척도(Ordinal scale)이거나, 3) 표본 크기가 작고 이상치(Outlier)가 존재할 때 모수적 검정(t-test)의 대안으로 사용된다.
 
 일반적으로 'Wilcoxon Test'라고 부를 때는 문맥에 따라 아래 두 가지 검정 중 하나(주로 대응표본인 부호순위 검정)를 지칭하므로 구분이 필요하다.
 
-| 구분            | 윌콕슨 부호순위 검정<br>(Wilcoxon Signed-Rank Test)                       | 윌콕슨 순위합 검정<br>(Wilcoxon Rank-Sum Test)                                       |
+| 구분            | 1. 윌콕슨 부호순위 검정<br>(Wilcoxon Signed-Rank Test)                    | 2. 윌콕슨 순위합 검정<br>(Wilcoxon Rank-Sum Test)                                    |
 | :------------ | :--------------------------------------------------------------- | :--------------------------------------------------------------------------- |
 | **표본 특성**     | **대응표본 (Paired / Dependent samples)**<br>동일 대상의 전·후 비교, 짝지어진 데이터 | **독립표본 (Unpaired / Independent samples)**<br>서로 독립된 두 집단 간 비교                |
 | **모수적 대응 기법** | 대응표본 t-검정 (Paired t-test)                                        | 독립표본 t-검정 (Independent two-sample t-test)                                    |
