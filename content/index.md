@@ -4,7 +4,7 @@ updated: 2026-11-07
 dg-home: "true"
 dg-publish: "true"
 ---
-소개: 안녕하세요 현승의 디지털 가든 입니다. 
+소개: 안녕하세요 현승의 블로그 입니다. 이 공간은 정보 공유보다는 필자의 지식을 정리하는데 목적이 있습니다. 
 #### 블로그 구조 (Blog Structure)
 블로그는 1) Inbox, 2) Calendar, 3) Research, 4) Study, 5) Project, 6) life 의 6개의 상위 폴더로 구성된다. 
 1. Inbox: 미분류 노트 
