@@ -7,3 +7,4 @@ dg-publish: "true"
 [[Journal]]
 - 논문 Journal에 대한 정보 
 [[연구노트]]
+
