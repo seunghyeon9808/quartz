@@ -13,3 +13,6 @@ dg-publish: "true"
 
 #### 1. 개념 
 - [[Wilcoxon Test]] 
+
+#### C. 지표 
+- [[정오분류표 ]] 
