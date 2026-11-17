@@ -1,11 +1,35 @@
 ---
 dg-publish: "true"
 ---
-Ran extract PDF chapter 1 pages
-Ran read Chapter 1 text from PDF
-Analyzed output.txt:L1-630
 
-[prince2023udl.pdf](file:///Users/seunghyeonjeong/Desktop/Mac/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%87%E1%85%AE/%E1%84%83%E1%85%B5%E1%86%B8%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/prince2023udl.pdf)의 **Chapter 1: Introduction** 내용을 핵심 개념과 불릿 포인트별로 구조화하여 정리했습니다.
+## 🗺️ Chapter 1 한눈에 보기 (Mindmap)
+
+```mermaid
+flowchart LR
+    Root(["<b>Ch 1. 딥러닝 개요</b><br/>(Introduction)"])
+
+    Root --> Hierarchy["<b>0. 개념 정의</b>"]
+    Hierarchy --> H1["AI ⊃ 머신러닝 ⊃ 딥러닝"]
+
+    Root --> SL["<b>1.1 지도 학습</b><br/>(Supervised)"]
+    SL --> SL1["<b>문제 유형</b><br/>회귀(연속값) / 분류(범주)"]
+    SL --> SL2["<b>데이터 특성</b><br/>정형, 가변 길이, 고차원 구조"]
+    SL --> SL3["<b>구조화된 출력</b><br/>분할, 깊이 추정, 번역, 이미지 합성"]
+
+    Root --> UL["<b>1.2 비지도 학습</b><br/>(Unsupervised)"]
+    UL --> UL1["<b>생성 모델</b><br/>데이터 분포 학습 및 샘플 합성"]
+    UL --> UL2["<b>잠재 변수 (Latent)</b><br/>저차원 기저 표현 및 보간"]
+    UL --> UL3["<b>지도 학습과 결합</b><br/>데이터 효율성, 타당성, 다양성"]
+
+    Root --> RL["<b>1.3 강화 학습</b><br/>(Reinforcement)"]
+    RL --> RL1["<b>기본 구조</b><br/>에이전트 · 상태 · 행동 · 보상"]
+    RL --> RL2["<b>핵심 난제</b><br/>시간적 신용 할당 / 탐색 vs 활용"]
+    RL --> RL3["<b>정책 네트워크</b><br/>상태(State) → 행동(Action) 매핑"]
+
+    Root --> Ethics["<b>1.4 AI 윤리</b><br/>(Ethics)"]
+    Ethics --> E1["편향·공정성 / 설명 가능성"]
+    Ethics --> E2["무기화 / 권력 집중 / 실존적 위험"]
+```
 
 ---
 
@@ -14,7 +38,6 @@ Analyzed output.txt:L1-630
 - **머신러닝 (Machine Learning, ML):** 관측된 데이터에 수학적 모델을 피팅(fitting)하여 의사결정을 학습하는 AI의 하위 분야. 크게 **지도 학습(Supervised)**, **비지도 학습(Unsupervised)**, **강화 학습(Reinforcement)**의 3가지 영역으로 나뉨.
 - **딥러닝 (Deep Learning):** 머신러닝 모델의 일종인 **심층 신경망(Deep Neural Network)**을 데이터에 피팅하는 것. 자연어 처리(번역), 컴퓨터 비전(이미지 검색), 음성 인식 등 현재 세 영역 모두에서 가장 강력하고 실용적인 성능을 냄.
 
- ![InkDrawing](<7. 📋ETC/99.files/Ink/Drawing/2026.11.17 - 0.47am.svg>) [Edit Drawing](https://youtu.be/2arL1jh8ihA?type=inkDrawing&width=500&aspectRatio=1.778&viewBoxX=0&viewBoxY=0&viewBoxW=2000&viewBoxH=1125)
 
 ---
 - AI의 정의로 지능적 행동을 시뮬레이션 한다고 표현함. 다른 책에서는 흉내내거나 모사한다고 하였었음. 
