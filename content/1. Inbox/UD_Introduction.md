@@ -135,3 +135,95 @@ AI는 전기, 내연기관, 인터넷에 버금가는 파급력을 지니며, �
 - **학습 가이드 (How to Read):**
   - 각 챕터는 **본문(Main text)**, 역사적 맥락과 참고문헌을 담은 **노트(Notes)**, 그리고 이해를 돕는 **연습문제(Problems)** 및 웹사이트의 **Python 실습 노트북(Notebooks)**으로 구성됨.
   - 부록(Appendix A~C)을 통해 표기법(Notation), 수학적 개념, 확률 기초를 참조할 수 있음.
+
+---
+
+## 💻 실습: Notebook 1.1 -- Background Mathematics
+
+> [!NOTE] 표기법 핵심 포인트
+> 이 책에서는 선형 방정식을 $y = \beta + \omega x$ 형태로 표기합니다.
+> - **$\beta$ (Beta, 편향/절편, Bias / y-intercept):** 입력 $x=0$일 때의 기본 오프셋 값
+> - **$\omega$ (Omega, 가중치/기울기, Weight / slope):** 입력 $x$에 곱해지는 기울기
+
+### 1. 1차원 선형 함수 (1D Linear Function)
+- **수식:** $y = \beta + \omega x$
+- **목표 (TODO):**
+  1. 1D 선형 방정식 `y = beta + omega * x` 구현하기
+  2. $y$축과 $y=10$에서 만나고($(0, 10)$), $x$축과 $x=5$에서 만나는($(5, 0)$) 직선 만들기
+     - $x=0$일 때 $y=10 \implies \beta = 10.0$
+     - $x=5$일 때 $0 = 10 + 5\omega \implies \omega = -2.0$
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+def linear_function_1D(x, beta, omega):
+    # 1D 선형 방정식: y = beta(절편) + omega(기울기) * x
+    y = beta + omega * x
+    return y
+
+x = np.arange(0.0, 10.0, 0.01)
+beta = 10.0
+omega = -2.0
+y = linear_function_1D(x, beta, omega)
+```
+
+![[UDL_Ch01_1D_linear.png]]
+
+---
+
+### 2. 2차원 선형 함수 (2D Linear Function)
+- **수식:** $y = \beta + \omega_1 x_1 + \omega_2 x_2$
+- **시각화 의미:** $(x_1, x_2)$ 2차원 평면 위의 각 점에서 계산된 $y$값을 **색상(히트맵, 밝을수록 큰 값)** 과 **등고선(contour lines, 같은 $y$값을 잇는 선)** 으로 표현함.
+- **파라미터 변화 실험 (TODO):**
+  1. **기본값 ($\beta=0, \omega_1=1.0, \omega_2=-0.5$):** $y = x_1 - 0.5x_2$. $x_1$이 커질수록 밝아지고, $x_2$가 커질수록 어두워지는 대각선 등고선 형태.
+  2. **$\omega_1 = 0$일 때 ($y = -0.5x_2$):** $x_1$의 영향이 사라지고 음수 기울기($-0.5$)만 남아, $x_2$가 증가할수록 값이 **음수**로 감소(어두워짐)하며 등고선은 **가로선(수평선)** 이 됨.
+  3. **$\omega_2 = 0$일 때 ($y = x_1$):** $x_2$의 영향이 사라지고 양수 기울기($1.0$)만 남아, $x_1$이 증가할수록 값이 **양수**로 증가(밝아짐)하며 등고선은 **세로선(수직선)** 이 됨.
+  4. **$\beta = -5$일 때 ($y = -5 + x_1 - 0.5x_2$):** 등고선의 기울기(간격과 방향)는 그대로 유지되면서 모든 $y$값이 $5$만큼 작아지므로 **전반적으로 어두워짐**(등고선이 오른쪽 아래로 평행이동).
+
+```python
+def linear_function_2D(x1, x2, beta, omega1, omega2):
+    # 2D 선형 방정식: y = beta + omega1 * x1 + omega2 * x2
+    y = beta + omega1 * x1 + omega2 * x2
+    return y
+```
+
+![[UDL_Ch01_2D_linear.png]]
+
+---
+
+### 3. 다차원 선형 함수와 행렬/벡터 표기법 (3D Linear Function & Matrix Form)
+- **수식 (입력 3개 $\rightarrow$ 출력 2개):**
+  $$\begin{bmatrix} y_1 \\ y_2 \end{bmatrix} = \begin{bmatrix} \beta_1 \\ \beta_2 \end{bmatrix} + \begin{bmatrix} \omega_{11} & \omega_{12} & \omega_{13} \\ \omega_{21} & \omega_{22} & \omega_{23} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} \iff \mathbf{y} = \boldsymbol{\beta} + \boldsymbol{\Omega}\mathbf{x}$$
+- **행렬 크기(Shape) 규칙:** 입력이 $D_i$개이고 출력이 $D_o$개일 때, 가중치 행렬 $\boldsymbol{\Omega}$의 크기는 항상 **`(출력 개수 × 입력 개수)` = $(D_o \times D_i)$**가 됨.
+  - $(D_o \times D_i) \cdot (D_i \times 1) = (D_o \times 1)$
+
+```python
+# 1) 3D 단일 선형 함수 정의
+def linear_function_3D(x1, x2, x3, beta, omega1, omega2, omega3):
+    return beta + omega1 * x1 + omega2 * x2 + omega3 * x3
+
+# 2) 벡터/행렬 연산 (입력 3개 -> 출력 2개: Omega는 2x3 행렬)
+beta_vec = np.array([[beta1], [beta2]])                              # (2, 1)
+omega_mat = np.array([[omega11, omega12, omega13],
+                      [omega21, omega22, omega23]])                  # (2, 3)
+x_vec = np.array([[x1], [x2], [x3]])                                 # (3, 1)
+
+y_vec = beta_vec + np.matmul(omega_mat, x_vec)                       # (2, 1) -> y1 = -4.500, y2 = 2.900
+```
+
+- **Questions 풀이:**
+  1. **3차원 입력 선형 함수의 시각화와 원점 $(0,0,0)$에서의 값:**
+     - **시각화:** 입력 $(x_1, x_2, x_3)$만으로도 이미 3차원 공간을 차지하므로, 출력 $y$까지 높이로 그리려면 4차원이 필요함. 하지만 3차원 공간의 각 좌표에 **색상(열지도)이나 등위면(3D 등고선 평면)** 을 입히는 방식으로 3차원 공간까지는 시각화가 가능함!
+     - **원점 $(0,0,0)$의 값:** $x_1 = x_2 = x_3 = 0$을 대입하면 $y = \beta + 0 + 0 + 0 = \beta$ (**절편 $\beta$**).
+  2. **입력 2개($x_1, x_2$)로 선형 방정식 3개($y_1, y_2, y_3$)를 계산할 때 (3행 2열, $3 \times 2$ 행렬):**
+     $$\begin{bmatrix} y_1 \\ y_2 \\ y_3 \end{bmatrix}_{3 \times 1} = \begin{bmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{bmatrix}_{3 \times 1} + \begin{bmatrix} \omega_{11} & \omega_{12} \\ \omega_{21} & \omega_{22} \\ \omega_{31} & \omega_{32} \end{bmatrix}_{3 \times 2} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}_{2 \times 1}$$
+
+```python
+# Question 2 코드: 입력 2개(x1, x2) -> 출력 3개(y1, y2, y3)
+b_vec = np.array([[1.0], [-0.5], [0.2]])               # (3, 1)
+w_mat = np.array([[2.0, -1.0], [0.5, 1.5], [-1.2, 0.8]]) # (3, 2) -> 3행 2열!
+x_vec = np.array([[3.0], [2.0]])                       # (2, 1)
+
+y_vec = b_vec + np.matmul(w_mat, x_vec)                # 결과: y1=5.0, y2=4.0, y3=-1.8
+```
